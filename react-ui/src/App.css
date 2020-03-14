@@ -128,4 +128,8 @@
   font-weight: 700;
   letter-spacing: 0.5px;
   line-height: 25px;
+
+  border-radius: 10px;
+  background-color: #FFF;
+  box-shadow: 0 5px 70px 0 rgba(0,0,0,0.45);
 }
