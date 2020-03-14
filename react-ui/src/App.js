@@ -8,6 +8,7 @@ import {
 } from "react-router-dom"
 import LoginPage from './components/LoginPage'
 import HomePage from './components/HomePage'
+import SmsConfirmPage from './components/SmsConfirmPage'
 import history from './history'
 
 function App() {
@@ -15,7 +16,7 @@ function App() {
     <Router history={history}>
       <div className="App">
         <Switch>
-          <Route path="/post/sms">Tere</Route>
+          <Route path="/post/sms"><SmsConfirmPage /></Route>
           <Route path="/login">
             <LoginPage />
           </Route>
