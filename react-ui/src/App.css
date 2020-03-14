@@ -63,7 +63,7 @@
 /* Pages */
 .banner {
   background-color: #296EBF;
-  height: 538px;
+  min-height: 100vh;
 }
 
 .header-buttons {
@@ -103,6 +103,8 @@
   padding-left: 46px;
   padding-right: 46px;
 
+  text-align: left;
+
   height: 90px;
   color: #FFF;
   font-family: Helvetica;
@@ -110,6 +112,11 @@
   font-weight: 700;
   letter-spacing: 0.5px;
   line-height: 30px;
+}
+
+.call-to-action--small {
+  font-size: 18px;
+  line-height: 23px;
 }
 
 .action-button {
