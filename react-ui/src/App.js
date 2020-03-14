@@ -2,27 +2,27 @@ import React from 'react';
 import { RegisterForm } from './components/registerForm'
 import './App.css'
 import {
-  BrowserRouter as Router,
+  Router,
   Switch,
   Route,
 } from "react-router-dom"
 import LoginPage from './components/LoginPage'
-import HomePage from './components/HomePage';
+import HomePage from './components/HomePage'
+import history from './history'
 
 function App() {
   return (
-    <Router>
+    <Router history={history}>
       <div className="App">
         <Switch>
-          <Route path="/step1">
-            <HomePage />
-          </Route>
+          <Route path="/post/sms">Tere</Route>
           <Route path="/login">
             <LoginPage />
           </Route>
-          <Route path="/">
+          <Route path="/register">
             <RegisterForm />
           </Route>
+          <Route path="/"><HomePage /></Route>
         </Switch>
       </div>
     </Router>
