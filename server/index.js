@@ -45,7 +45,7 @@ if (!isDev && cluster.isMaster) {
 			extended: true,
 		}))
 	// Priority serve any static files.
-	app.use(express.static(path.resolve(__dirname, '../react-ui/build')));
+	app.use(express.static(path.resolve(__dirname, '../react-ui/out')));
 
 	app.post('/api/register', async function (req, res) {
 		const {
@@ -77,7 +77,7 @@ if (!isDev && cluster.isMaster) {
 
 	// All remaining requests return the React app, so it can handle routing.
 	app.get('*', function (request, response) {
-		response.sendFile(path.resolve(__dirname, '../react-ui/build', 'index.html'));
+		response.sendFile(path.resolve(__dirname, '../react-ui/out', 'index.html'));
 	});
 
 	app.listen(PORT, async function () {
