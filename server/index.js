@@ -8,19 +8,19 @@ const getConnection = require('./db')
 const isDev = process.env.NODE_ENV !== 'production';
 const PORT = process.env.PORT || 5000;
 const sendAuthMessage = require('./lib/sms');
-var jwt = require('express-jwt');
-var jwks = require('jwks-rsa');
+const jwt = require('express-jwt');
+const jwks = require('jwks-rsa');
 
-var jwtCheck = jwt({
-  secret: jwks.expressJwtSecret({
-      cache: true,
-      rateLimit: true,
-      jwksRequestsPerMinute: 5,
-      jwksUri: 'https://communityhelp1.eu.auth0.com/.well-known/jwks.json'
-  }),
-  audience: 'http://abistame.ee/',
-  issuer: 'https://communityhelp1.eu.auth0.com/',
-  algorithms: ['RS256']
+const jwtCheck = jwt({
+	secret: jwks.expressJwtSecret({
+		cache: true,
+		rateLimit: true,
+		jwksRequestsPerMinute: 5,
+		jwksUri: 'https://communityhelp1.eu.auth0.com/.well-known/jwks.json'
+	}),
+	audience: 'http://abistame.ee/',
+	issuer: 'https://communityhelp1.eu.auth0.com/',
+	algorithms: ['RS256']
 });
 
 let db;
@@ -46,14 +46,6 @@ if (!isDev && cluster.isMaster) {
 		}))
 	// Priority serve any static files.
 	app.use(express.static(path.resolve(__dirname, '../react-ui/build')));
-
-
-
-	// Answer API requests.
-	app.get('/api', function (req, res) {
-		res.set('Content-Type', 'application/json');
-		res.send('{"message":"Hello from the custom server!"}');
-	});
 
 	app.post('/api/register', async function (req, res) {
 		const {

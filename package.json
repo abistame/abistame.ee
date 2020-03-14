@@ -6,7 +6,8 @@
     "node": "10.x"
   },
   "scripts": {
-    "start": "node server",
+	"doMigration": "knex migrate:latest",
+    "start": "npm run doMigration && node server",
     "build": "cd react-ui/ && npm install && npm run build"
   },
   "cacheDirectories": [
