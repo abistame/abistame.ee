@@ -6,20 +6,25 @@ import {
   Switch,
   Route,
 } from "react-router-dom"
+import LoginPage from './components/LoginPage'
+import HomePage from './components/HomePage';
 
 function App() {
   return (
     <Router>
-      <Switch>
-        <Route path="/foobar">
-          Hello
-        </Route>
-        <Route path="/">
-          <div className="App">
+      <div className="App">
+        <Switch>
+          <Route path="/step1">
+            <HomePage />
+          </Route>
+          <Route path="/login">
+            <LoginPage />
+          </Route>
+          <Route path="/">
             <RegisterForm />
-          </div>
-        </Route>
-      </Switch>
+          </Route>
+        </Switch>
+      </div>
     </Router>
   );
 

@@ -8,6 +8,20 @@ const getConnection = require('./db')
 const isDev = process.env.NODE_ENV !== 'production';
 const PORT = process.env.PORT || 5000;
 const sendAuthMessage = require('./lib/sms');
+var jwt = require('express-jwt');
+var jwks = require('jwks-rsa');
+
+var jwtCheck = jwt({
+  secret: jwks.expressJwtSecret({
+      cache: true,
+      rateLimit: true,
+      jwksRequestsPerMinute: 5,
+      jwksUri: 'https://communityhelp1.eu.auth0.com/.well-known/jwks.json'
+  }),
+  audience: 'http://abistame.ee/',
+  issuer: 'https://communityhelp1.eu.auth0.com/',
+  algorithms: ['RS256']
+});
 
 let db;
 // Multi-process to utilize all CPU cores.

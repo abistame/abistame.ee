@@ -30,3 +30,102 @@
     transform: rotate(360deg);
   }
 }
+
+/* Generic */
+.material-icons,
+.material-icons-outlined {
+  display: inline-flex;
+
+  vertical-align: text-bottom;
+
+  text-rendering: optimizeLegibility;
+  font-feature-settings: 'liga';
+
+  user-select: none;
+}
+
+.input-with-icon {
+  position: relative;
+  width: 100%;
+}
+
+.input-with-icon__input {
+  padding-right: 36px;
+  appearance: none;
+}
+
+.input-with-icon__icon {
+  position: absolute;
+  top: 32px;
+  right: 32px;
+}
+
+/* Pages */
+.banner {
+  background-color: #296EBF;
+  height: 538px;
+}
+
+.header-buttons {
+  padding-top: 153px;
+  padding-left: 50px;
+  padding-right: 50px;
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.header-button {
+  height: 40px;
+  width: 126px;
+
+  opacity: 0.5;
+  color: #FFF;
+  font-family: Helvetica;
+  font-size: 25px;
+  font-weight: 700;
+  letter-spacing: 0.83px;
+  line-height: 40px;
+}
+
+.header-button.header-button--active {
+  opacity: 1;
+}
+
+.header-button--active .header-border {
+  height: 4px;
+  width: 100%;
+  background-color: #FFF;
+}
+
+.call-to-action {
+  padding-top: 72px;
+  padding-left: 46px;
+  padding-right: 46px;
+
+  height: 90px;
+  color: #FFF;
+  font-family: Helvetica;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  line-height: 30px;
+}
+
+.action-button {
+  padding-top: 36px;
+  padding-left: 22px;
+  padding-right: 22px;
+}
+
+.action-button input {
+  padding-left: 36px;
+
+  height: 75px;
+  color: #1E508A;
+  font-family: Helvetica;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  line-height: 25px;
+}
