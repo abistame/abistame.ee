@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 const getConnection = require('./db')
 const isDev = process.env.NODE_ENV !== 'production';
 const PORT = process.env.PORT || 5000;
+const sendAuthMessage = require('./lib/sms');
 
 let db;
 // Multi-process to utilize all CPU cores.
@@ -53,7 +54,14 @@ if (!isDev && cluster.isMaster) {
 			const request = await db.query(
 				'INSERT INTO requests(isprovider, phonenumber, need, location, radius) VALUES ($1, $2, $3, $4, $5)',
 				[helpProvider, phoneNumber, need, location, helpGivingRadius])
-			res.status(201).json({ success: true, requestCreatedId: request.insertId })
+
+			const authMessage = await sendAuthMessage(phoneNumber)
+
+			if (request && authMessage) {
+				res.status(201).json({ success: true, requestCreatedId: request.insertId });
+			} else {
+				res.status(400).json({ success: false })
+			}
 
 		} catch (error) {
 			console.log(error)
