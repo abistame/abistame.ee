@@ -23,7 +23,12 @@ export default function HomePage() {
 
       <div className="action-button">
         <div class="input-with-icon">
-          <input type="text" class="input input-with-icon__input" placeholder="Telefoni number" onKeyDown={handleKeyDown} />
+          <input
+            type="tel"
+            class="input input-with-icon__input"
+            placeholder="Telefoni number"
+            onKeyDown={handleKeyDown}
+          />
           <div class="material-icons input-with-icon__icon" onClick={nextStep}>
             arrow_forward
           </div>
