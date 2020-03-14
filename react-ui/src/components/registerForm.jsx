@@ -1,8 +1,10 @@
-import React from 'react';
-import { useForm } from 'react-hook-form';
+import React, { useState } from 'react'
+import { useForm } from 'react-hook-form'
 import './styles.css';
+import Map from './Map'
 
 export function RegisterForm() {
+  const [location, setLocation] = useState({})
 	const { register, errors, handleSubmit, watch } = useForm();
 	const onSubmit = async data => {
 		const response = await fetch('/api/register', {
@@ -11,7 +13,7 @@ export function RegisterForm() {
 				Accept: 'application/json',
 				'Content-Type': 'application/json',
 			},
-			body: JSON.stringify(data)
+			body: JSON.stringify({ ...data, location })
 		});
 
 		console.log(response)

@@ -1,7 +1,6 @@
 import React from 'react';
 import { RegisterForm } from './components/registerForm'
 import './App.css'
-import Map from './components/Map'
 import {
   BrowserRouter as Router,
   Switch,
@@ -18,7 +17,6 @@ function App() {
         <Route path="/">
           <div className="App">
             <RegisterForm />
-            <Map />
           </div>
         </Route>
       </Switch>
