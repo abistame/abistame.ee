@@ -55,7 +55,7 @@ if (!isDev && cluster.isMaster) {
 				'INSERT INTO requests(isprovider, phonenumber, need, location, radius) VALUES ($1, $2, $3, $4, $5)',
 				[helpProvider, phoneNumber, need, location, helpGivingRadius])
 
-			const authMessage = await sendAuthMessage(phoneNumber)
+			const authMessage = await sendAuthMessage(phoneNumber);
 
 			if (request && authMessage) {
 				res.status(201).json({ success: true, requestCreatedId: request.insertId });
