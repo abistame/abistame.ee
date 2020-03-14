@@ -1,18 +1,10 @@
 import React from 'react'
+import HeaderButtons from './HeaderButtons'
 
 export default function HomePage() {
   return (
     <div className="banner">
-      <div className="header-buttons">
-        <div className="header-button header-button--active">
-          Vajan abi
-          <div className="header-border" />
-        </div>
-        <div className="header-button">
-          Pakun abi
-          <div className="header-border" />
-        </div>
-      </div>
+      <HeaderButtons />
 
       <div className="call-to-action">
         62 inimest sinu piirkonnas on valmis abistama
