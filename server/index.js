@@ -47,7 +47,7 @@ if (!isDev && cluster.isMaster) {
 	// Priority serve any static files.
 	app.use(express.static(path.resolve(__dirname, '../react-ui/out')));
 
-	app.post('/api/newpost', async function (req, res) {
+	app.post('/api/newuserpost', async function (req, res) {
 		const {
 			phoneNumber,
 			need,
@@ -74,7 +74,112 @@ if (!isDev && cluster.isMaster) {
 			res.status(500).json({ success: false })
 		}
 	});
+	
+	app.get('/heartbeat', (err, res) => {
+		res.status(200);
+		res.json({ working: true });
+		res.end();
+	});
+	
+	app.post('/api/neworgpost', async function (req, res) {
+		const {
+			enterprise_id,
+			need,
+			location,
+			radius
+		} = req.body;
 
+		try {
+			const challenge=Math.random().toString(6);
+			const request = await db.query(
+				'INSERT INTO posts(enterprise_key, need, location, radius, created) VALUES ($1, $2, $3, $4, now())',
+				[enterprise_id, need, location, location_tag, radius])
+
+			const authMessage = await sendAuthMessage(phoneNumber, challenge);
+
+			if (request && authMessage) {
+				res.status(201).json({ success: true, requestCreatedId: request.insertId });
+			} else {
+				res.status(400).json({ success: false })
+			}
+
+		} catch (error) {
+			console.log(error)
+			res.status(500).json({ success: false })
+		}
+	});
+
+	app.post('/api/checkhelper', async function (req, res) {
+		const {
+			phoneNumber
+		} = req.body;
+
+		try {
+			
+			const challenge=Math.random().toString(6);
+			//Here it should check from DB for users existence, and if new return code challenge or registration path. If challenge. Send SMS.
+
+		} catch (error) {
+			console.log(error)
+			res.status(500).json({ success: false })
+		}
+	});
+
+	app.post('/api/registerhelper', async function (req, res) {
+		const {
+			phoneNumber,
+			name,
+			location,
+			radius
+		} = req.body;
+
+		try {
+			
+		} catch (error) {
+			console.log(error)
+			res.status(500).json({ success: false })
+		}
+	});
+		
+	app.get('/api/getposts', async function (req, res) {
+		const {
+			helperId
+		} = req.body;
+
+		try {
+
+		} catch (error) {
+			console.log(error)
+			res.status(500).json({ success: false })
+		}
+	});
+
+    app.get('/api/getorgposts', async function (req, res) {
+		const {
+			EnterpriseId
+		} = req.body;
+
+		try {
+
+		} catch (error) {
+			console.log(error)
+			res.status(500).json({ success: false })
+		}
+	});
+	
+	app.get('/api/getorgusers', async function (req, res) {
+		const {
+			EnterpriseId
+		} = req.body;
+
+		try {
+
+		} catch (error) {
+			console.log(error)
+			res.status(500).json({ success: false })
+		}
+	});
+		
 	// All remaining requests return the React app, so it can handle routing.
 	app.get('*', function (request, response) {
 		response.sendFile(path.resolve(__dirname, '../react-ui/out', 'index.html'));

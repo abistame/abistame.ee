@@ -6,9 +6,10 @@
     "node": "10.x"
   },
   "scripts": {
-	"doMigration": "knex migrate:latest",
+    "doMigration": "knex migrate:latest",
     "start": "npm run doMigration && node server",
-    "build": "cd react-ui/ && npm install && npm run build"
+    "build": "cd react-ui/ && npm install && npm run build",
+    "test": "jest"
   },
   "cacheDirectories": [
     "node_modules",
@@ -38,5 +39,8 @@
     "react"
   ],
   "license": "MIT",
-  "devDependencies": {}
+  "devDependencies": {
+    "jest": "^25.1.0",
+    "supertest": "^4.0.2"
+  }
 }
