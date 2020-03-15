@@ -1,0 +1,43 @@
+.gutter {
+  background: var(--color-gray);
+  padding: 16px 40px;
+
+  label {
+    text-transform: uppercase;
+    font-size: 12px;
+    line-height: 24px;
+    letter-spacing: 0.4px;
+  }
+}
+
+.track {
+  position: relative;
+  margin: 24px 0;
+  height: 4px;
+  background: var(--color-green-light);
+}
+
+.trackFill {
+  height: 4px;
+  background: var(--color-green);
+}
+
+.trackCursor {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  background: var(--color-green);
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+}
+
+.legend {
+  justify-content: space-between;
+  font-size: 10px;
+  line-height: 10px;
+  letter-spacing: 0.33px;
+  color: #333;
+  opacity: 0.5;
+}

@@ -1,0 +1,38 @@
+.input {
+  width: 100%;
+  border: 2px solid var(--color-primary);
+  border-radius: 8px;
+
+  line-height: 32px;
+  padding: 20px 32px;
+  margin: 8px 0;
+
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: inherit;
+  color: inherit;
+
+  &::placeholder {
+    font-weight: normal;
+    color: #333;
+    opacity: 0.5;
+  }
+
+  &PrimaryPlaceholder::placeholder {
+    color: var(--color-primary);
+    font-weight: bold;
+    opacity: 1;
+  }
+}
+
+input.large {
+  font-size: 22px;
+  line-height: 28px;
+  letter-spacing: 0.5px;
+}
+
+textarea.input {
+  min-height: 235px;
+  font-weight: normal;
+  line-height: 24px;
+}
