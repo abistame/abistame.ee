@@ -47,21 +47,21 @@ if (!isDev && cluster.isMaster) {
 	// Priority serve any static files.
 	app.use(express.static(path.resolve(__dirname, '../react-ui/out')));
 
-	app.post('/api/register', async function (req, res) {
+	app.post('/api/newpost', async function (req, res) {
 		const {
-			helpProvider,
 			phoneNumber,
 			need,
 			location,
-			helpGivingRadius
+			logcation_tag
 		} = req.body;
 
 		try {
+			const challenge=Math.random().toString(6);
 			const request = await db.query(
-				'INSERT INTO requests(isprovider, phonenumber, need, location, radius) VALUES ($1, $2, $3, $4, $5)',
-				[helpProvider, phoneNumber, need, location, helpGivingRadius])
+				'INSERT INTO posts(phonenumber, need, location, location_tag, confirm_code, created) VALUES ($1, $2, $3, $4, $5, now())',
+				[phoneNumber, need, need, location, logcation_tag, challenge])
 
-			const authMessage = await sendAuthMessage(phoneNumber);
+			const authMessage = await sendAuthMessage(phoneNumber, challenge);
 
 			if (request && authMessage) {
 				res.status(201).json({ success: true, requestCreatedId: request.insertId });
