@@ -76,6 +76,7 @@ if (!isDev && cluster.isMaster) {
 	});
 	
 	app.get('/heartbeat', (err, res) => {
+		console.info('Hearbeat request!');
 		res.status(200);
 		res.json({ working: true });
 		res.end();
@@ -185,8 +186,11 @@ if (!isDev && cluster.isMaster) {
 		response.sendFile(path.resolve(__dirname, '../react-ui/out', 'index.html'));
 	});
 
-	app.listen(PORT, async function () {
-		db = await getConnection();
-		console.error(`Node ${isDev ? 'dev server' : 'cluster worker ' + process.pid}: listening on port ${PORT}`);
-	});
+        //code
+	const listen = app.listen(PORT, async function () {
+			db = await getConnection();
+			console.error(`Node ${isDev ? 'dev server' : 'cluster worker ' + process.pid}: listening on port ${PORT}`);
+		});
+	
+	module.exports = listen
 }
