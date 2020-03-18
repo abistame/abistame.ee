@@ -47,16 +47,17 @@ if (!isDev && cluster.isMaster) {
 	// Priority serve any static files.
 	app.use(express.static(path.resolve(__dirname, '../react-ui/out')));
 
-	app.post('/api/newuserpost', async function (req, res) {
+	app.post('/api/newuserpost', async function (request, res) {
 		const {
 			phoneNumber,
 			need,
 			location,
 			logcation_tag
-		} = req.body;
+		} = request.body;
 
 		try {
 			const challenge=Math.random().toString(6);
+			db=getConnection();
 			const request = await db.query(
 				'INSERT INTO posts(phonenumber, need, location, location_tag, confirm_code, created) VALUES ($1, $2, $3, $4, $5, now())',
 				[phoneNumber, need, need, location, logcation_tag, challenge])
@@ -186,11 +187,14 @@ if (!isDev && cluster.isMaster) {
 		response.sendFile(path.resolve(__dirname, '../react-ui/out', 'index.html'));
 	});
 
-        //code
+    if (process.env.ITS_A_JEST) {
+       module.exports = app
+    } else {
 	const listen = app.listen(PORT, async function () {
 			db = await getConnection();
 			console.error(`Node ${isDev ? 'dev server' : 'cluster worker ' + process.pid}: listening on port ${PORT}`);
 		});
 	
 	module.exports = listen
+	}
 }
