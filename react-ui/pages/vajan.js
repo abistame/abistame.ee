@@ -20,6 +20,19 @@ export default () => {
     case 0:
       stageEl = (
         <>
+          <StatusText idx={0}>
+            Jätkamiseks palun sisesta SMS'ga saadud kood.
+          </StatusText>
+          <Input placeholder="XXX-XXX" />
+          <Button onClick={() => setStageIdx(stageIdx + 1)}>
+            Kinnita kood <img src="/arrow.png" />
+          </Button>
+        </>
+      );
+      break;
+    case 1:
+      stageEl = (
+        <>
           <StatusText idx={1}>
             Kirjelda oma abivajadust võimalikult täpselt.
           </StatusText>
@@ -33,29 +46,16 @@ export default () => {
         </>
       );
       break;
-    case 1:
+    case 2:
       stageEl = (
         <>
           <StatusText idx={2}>
-            Sisesta oma asukoht kaartil ja vajadusel lisa täpsustus. Täpse aadressi saad abi pakkujaga kokku
+            Sisesta oma asukoht. Täpse aadressi saad abi pakkujaga kokku
             leppida.
           </StatusText>
           <Input placeholder="Hageri, Kohila vald" />
           <Button onClick={() => setStageIdx(stageIdx + 1)}>
             Postita abipalve <img src="/arrow.png" />
-          </Button>
-        </>
-      );
-      break;
-     case 2:
-      stageEl = (
-        <>
-          <StatusText idx={2}>
-            Jätkamiseks palun sisesta SMS'ga saadud kood.
-          </StatusText>
-          <Input placeholder="XXXXXX" />
-          <Button onClick={() => setStageIdx(stageIdx + 1)}>
-            Kinnita kood <img src="/arrow.png" />
           </Button>
         </>
       );

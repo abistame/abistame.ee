@@ -8,9 +8,11 @@
 
 body {
   --color-white: #ffffff;
-  --color-primary: #1E508A;
-  --color-primary-dark: #1C5393;
-  --color-green: #29B533;
+  --color-gray: #eeeeee;
+  --color-primary: #1e508a;
+  --color-primary-dark: #1c5393;
+  --color-green: #29b533;
+  --color-green-light: rgba(41, 181, 51, 0.5);
 
   font-family: Helvetica, Arial, sans-serif;
   font-size: 18px;
@@ -24,7 +26,6 @@ h1 {
   line-height: 40px;
   letter-spacing: 0.75px;
 }
-
 
 .row {
   display: flex;
