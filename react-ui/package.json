@@ -5,7 +5,7 @@
   "license": "MIT",
   "dependencies": {
     "classcat": "^4.0.2",
-    "next": "^9.3.0",
+    "next": "^11.1.3",
     "node-sass": "^4.13.1",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
